@@ -1,12 +1,14 @@
 import {
   BadRequestException,
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Get,
   NotFoundException,
   Post,
   Req,
   Res,
+  UseInterceptors,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
@@ -56,6 +58,7 @@ export class AuthController {
     return user;
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get('user')
   async user(@Req() request: Request) {
     const cookie = request.cookies['jwt'];
