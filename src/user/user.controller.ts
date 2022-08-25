@@ -7,6 +7,6 @@ export class UserController {
   constructor(private userService: UserService) {}
   @Get()
   async all(): Promise<User[]> {
-    return await this.userService.all();
+    return this.userService.all();
   }
 }
