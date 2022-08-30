@@ -3,6 +3,7 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -47,5 +48,10 @@ export class UserController {
   async update(@Param('id') id: number, @Body() body: UserUpdateDto) {
     await this.userService.update(id, body);
     return await this.userService.findOne({ id });
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.userService.delete(id);
   }
 }
